@@ -1,6 +1,6 @@
-package com.company.elements;
+package com.company.elements.invisible;
 
-public class Ray {
+public class Ray{
     Point origin;
     Vector direction;
 

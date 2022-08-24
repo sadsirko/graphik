@@ -1,6 +1,6 @@
-package com.company.elements;
+package com.company.elements.invisible;
 
-public class Point {
+public class Point  {
     Double x;
     Double y;
     Double z;
@@ -9,6 +9,17 @@ public class Point {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+    public Point(Integer x, Integer y, Integer z) {
+        this.x = (double)x;
+        this.y = (double)y;
+        this.z = (double)z;
+    }
+    
+    public Point getPoint(Vector plus){
+        return new Point(plus.getX() + this.getX(),
+                plus.getY() + this.getY(),
+                plus.getZ() + this.getZ());
     }
 
     public Double getX() {

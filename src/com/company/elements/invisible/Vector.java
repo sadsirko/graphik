@@ -1,6 +1,6 @@
-package com.company.elements;
+package com.company.elements.invisible;
 
-public class Vector {
+public class Vector  {
     Point start;
     Point finish;
     Double x;
@@ -25,8 +25,15 @@ public class Vector {
         this.isPositioned = false;
     }
 
+    public Vector(Integer x, Integer y, Integer z) {
+        this.x = (double)x;
+        this.y = (double)y;
+        this.z = (double)z;
+        this.isPositioned = false;
+    }
+
     public Double getLength(){
-        return Math.sqrt(Math.pow(this.x,2) + Math.pow(this.x,2) + Math.pow(this.x,2));
+        return Math.sqrt(Math.pow(this.x,2) + Math.pow(this.y,2) + Math.pow(this.z,2));
     }
 
     public Double scalarProduct(Vector second){
@@ -43,6 +50,18 @@ public class Vector {
 
     public Vector subtract(Vector subtractor){
         return new Vector(this.x + subtractor.getX(),this.y - subtractor.getY(),this.z - subtractor.getZ());
+    }
+
+    public Point addToPoint(Point p){
+        return new Point(this.getX() + p.getX(),this.getY() + p.getY(),this.getZ() + p.getZ());
+    }
+
+    public void normalize(){
+        Double length = this.getLength();
+        this.setX( this.getX() / length);
+        this.setY( this.getY() / length);
+        this.setZ( this.getZ() / length);
+        
     }
 
     public double getAngle(Vector b){
@@ -72,5 +91,6 @@ public class Vector {
     public void setZ(Double z) {
         this.z = z;
     }
+
 
 }
