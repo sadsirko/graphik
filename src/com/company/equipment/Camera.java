@@ -1,5 +1,6 @@
 package com.company.equipment;
 
+import com.company.Colour;
 import com.company.elements.GeometryObject;
 import com.company.elements.invisible.Light;
 import com.company.elements.invisible.Point;
@@ -60,6 +61,9 @@ private final int MIN_DEPTH = 0;
                         if( pixel.isSmaller(distance)) {
                             pixel.setDistance(distance);
                             lightLevel = object.getLightningLevel(interPoint, this.light);
+                            int colour = (int) (lightLevel * 255);
+                            pixel.setColour(new Colour(colour,colour,colour));
+
                             if (lightLevel < 0)
                                 pixel.setSymbol(' ');
                             if (lightLevel >= 0 && lightLevel < 0.2)

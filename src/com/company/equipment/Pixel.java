@@ -1,7 +1,10 @@
 package com.company.equipment;
+import com.company.Colour;
 import com.company.elements.invisible.Point;
 
 public class Pixel {
+
+    Colour colour;
     Integer matrixPositionX;
     Integer matrixPositionY;
     Point pixelCenter;
@@ -19,6 +22,7 @@ public class Pixel {
                 screen.pixelSize/2, screen.highLeftCorner.getY(), screen.getHighLeftCorner().getZ() -
                 screen.pixelSize * matrixPositionY + screen.pixelSize / 2);
         this.symbol = '—';
+        this.colour = new Colour(255,192,203);
         this.distance = 100000;
     }
 
@@ -72,6 +76,14 @@ public class Pixel {
 
     public void setMatrixPositionY(Integer matrixPositionY) {
         this.matrixPositionY = matrixPositionY;
+    }
+
+    public void setColour(com.company.Colour colour) {
+        this.colour = colour;
+    }
+
+    public com.company.Colour getColour() {
+        return colour;
     }
 
     @Override

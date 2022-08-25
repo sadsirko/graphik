@@ -15,9 +15,11 @@ public class SceneTest {
     @Test
     void intersectsWith() {
         GeometryObject[] obj = {
-                new Triangle(new Point(20,5,20 ),new Point(20,5,0 ),new Point(0,5,0 )),
+                new Triangle(new Point(20,5,20 ),new Point(20,5,0 ),new Point(0,5,0 ),
+                        null, null, null),
 
-                new Triangle(new Point(10,25,5 ),new Point(40,10,10 ),new Point(40,15,50 )),
+                new Triangle(new Point(10,25,5 ),new Point(40,10,10 ),new Point(40,15,50 ),
+                        null,null,null),
 
                 new Sphere(new Point(40.0,11.0,40.0),10.0)
         };

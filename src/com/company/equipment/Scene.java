@@ -17,6 +17,10 @@ public class Scene {
         this.camera.getConstantLightRay(this.objects);
     }
 
+    public Screen getScreen() {
+        return screen;
+    }
+
     public String getPicture(){
         return this.camera.toString();
     }

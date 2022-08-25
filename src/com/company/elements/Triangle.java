@@ -7,12 +7,21 @@ public class Triangle implements GeometryObject{
     public Point secondAngle;
     public Point thirdAngle;
 
+    public Normal firstNormal;
+    public Normal secondNormal;
+    public Normal thirdNormal;
+
+
+
     public Normal normal;
 
-    public Triangle(Point firstAngle, Point secondAngle, Point thirdAngle) {
+    public Triangle(Point firstAngle, Point secondAngle, Point thirdAngle,Normal f,Normal s, Normal t) {
         this.firstAngle = firstAngle;
         this.secondAngle = secondAngle;
         this.thirdAngle = thirdAngle;
+        this.firstNormal = f;
+        this.secondNormal = s;
+        this.thirdNormal = t;
     }
 
 
@@ -93,26 +102,31 @@ public class Triangle implements GeometryObject{
         }
     }
 
-    public Normal getNormalUp(){
-        Vector edge1 = new Vector(this.firstAngle,this.thirdAngle);
-        Vector edge2 = new Vector(this.firstAngle,this.secondAngle);
-        Vector normal = edge1.cross(edge2);
-        return new Normal(normal.getX(),normal.getY(),normal.getZ());
-    }
+    public Vector getNormalInPos(Point pos){
+        double allArea = getPos(this.firstAngle, this.secondAngle, this.thirdAngle);
+        double secondArea = getPos(secondAngle,firstAngle,pos);
+        double thirdArea = getPos(firstAngle,thirdAngle,pos);
+        double third = thirdArea / allArea;
+        double second = secondArea / allArea;
 
-    public Normal getNormalDown(){
-        Vector edge1 = new Vector(this.firstAngle,this.thirdAngle);
-        Vector edge2 = new Vector(this.firstAngle,this.secondAngle);
-        Vector normal = edge2.cross(edge1);
-        return new Normal(normal.getX(),normal.getY(),normal.getZ());
-    }
+        Vector res = this.secondNormal.multiply(third).add(this.thirdNormal.multiply(second).add(this.firstNormal.multiply(1 - third - second)));
+        res.normalize();
+        return res;
+    };
+
+    public double getPos(Point f, Point s, Point t){
+      Vector firstV = new Vector(f,s);
+      Vector secondV = new Vector(f,t);
+      Vector r = firstV.cross(secondV);
+      return r.getLength() / 2;
+    };
+
 
     @Override
     public Double getLightningLevel(Point interPoint, Light light) {
-        Normal normalTriangleUp = getNormalDown();
-        Normal normalTriangleDown = getNormalUp();
-        double up = light.scalarProduct(normalTriangleUp);
-        double down = light.scalarProduct(normalTriangleDown);
-        return Math.max(up, down);
+        Vector normalTriangleUp = getNormalInPos(interPoint);
+        normalTriangleUp.normalize();
+        double lightLev = light.scalarProduct(normalTriangleUp);
+        return lightLev;
     }
 }

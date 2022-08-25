@@ -79,4 +79,11 @@ public class Screen {
         return center;
     }
 
+    public Integer getResolutionX() {
+        return resolutionX;
+    }
+
+    public Integer getResolutionY() {
+        return resolutionY;
+    }
 }
