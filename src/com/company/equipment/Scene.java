@@ -15,7 +15,7 @@ public class Scene {
         this.objects = objects;
 //        this.camera.getStartRay(objects);
         this.camera.getConstantLightRay(objects);
+        System.out.print(this.camera.toString());
     }
-
 
     }

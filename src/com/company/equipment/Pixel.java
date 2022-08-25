@@ -8,6 +8,7 @@ public class Pixel {
     Integer[] Colour;
     Screen screen;
     boolean intersection;
+    char symbol;
 
     public Pixel(Integer matrixPositionX, Integer matrixPositionY, Screen screen) {
         this.matrixPositionX = matrixPositionX;
@@ -16,6 +17,19 @@ public class Pixel {
         this.pixelCenter = new Point(screen.highLeftCorner.getX() + screen.pixelSize * matrixPositionX +
                 screen.pixelSize/2, screen.highLeftCorner.getY(), screen.getHighLeftCorner().getZ() -
                 screen.pixelSize * matrixPositionY + screen.pixelSize / 2);
+        this.symbol = '—';
+    }
+
+    public void setSymbol(char symbol) {
+        this.symbol = symbol;
+    }
+
+    public boolean hasNotSymbol(){
+        return (this.symbol != Character.MIN_VALUE);
+    }
+
+    public char getSymbol() {
+        return this.symbol;
     }
 
     public Point getPixelCenter() {

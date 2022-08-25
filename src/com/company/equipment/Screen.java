@@ -15,7 +15,8 @@ public class Screen {
     Integer resolutionY;
     Pixel[][] pixelMatrix;
 
-    public Screen(Integer resolutionX, Integer resolutionY, Point center, Double pixelSize) {
+    public
+    Screen(Integer resolutionX, Integer resolutionY, Point center, Double pixelSize) {
 
         this.center = center;
         this.pixelSize = pixelSize;

@@ -56,6 +56,13 @@ public class Vector  {
         return new Point(this.getX() + p.getX(),this.getY() + p.getY(),this.getZ() + p.getZ());
     }
 
+    public Vector cross(Vector second){
+        return new Vector(this.getY() * second.getZ() - this.getZ() * second.getY(),
+                this.getZ() * second.getX() - this.getX() * second.getZ(),
+                this.getX() * second.getY() - this.getY() * second.getX()
+                );
+    }
+
     public void normalize(){
         Double length = this.getLength();
         this.setX( this.getX() / length);
