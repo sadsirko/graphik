@@ -5,12 +5,13 @@ import com.company.elements.invisible.Point;
 import com.company.elements.invisible.Ray;
 
 public interface GeometryObject {
-public boolean intersectWith(Ray ray);
-public Point getIntersection(Ray ray);
+    public boolean intersectWith(Ray ray);
 
-public String toString();
+    public String toString();
 
-public Double getLightningLevel(Point interPoint, Light light);
+    Point getIntersection(Ray ray, double tMin, double tMax);
+
+    public Double getLightningLevel(Point interPoint, Light light);
 
 }
 

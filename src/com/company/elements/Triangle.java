@@ -56,7 +56,7 @@ public class Triangle implements GeometryObject{
     }
 
     @Override
-    public Point getIntersection(Ray ray) {
+    public Point getIntersection(Ray ray, double tMin, double tMax) {
         double epsilon = 0.000001;
         Vector edge1 = new Vector(this.firstAngle,this.secondAngle);
         Vector edge2 = new Vector(this.firstAngle,this.thirdAngle);

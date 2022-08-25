@@ -29,7 +29,7 @@ public class Sphere implements GeometryObject{
         return (D >= 0);
     }
 
-    public Point getIntersection(Ray ray){
+    public Point getIntersection(Ray ray, double tMin, double tMax){
         Point o = ray.getOrigin();
         Point c = this.center;
         Vector k = new Vector(c,o);

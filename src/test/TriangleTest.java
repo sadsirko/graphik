@@ -72,8 +72,8 @@ public class TriangleTest {
         Vector a = new Vector(-1, 0, 0);
         a.normalize();
         Ray ray1 = new Ray(new Point(5, 0, 0), a);
-        System.out.print(triangle.getIntersection(ray1).toString());
-        assertNotNull(triangle.getIntersection(ray1));
+        System.out.print(triangle.getIntersection(ray1,0,10000).toString());
+        assertNotNull(triangle.getIntersection(ray1,0,10000));
     }
     @Test
     void noIntersectsWithRes() {
@@ -81,7 +81,7 @@ public class TriangleTest {
         a.normalize();
         Ray ray1 = new Ray(new Point(5, 0, 0), a);
 
-        assertNull(triangle.getIntersection(ray1));
+        assertNull(triangle.getIntersection(ray1,0,10000));
     }
     @Test
     void IntersectsWithRes() {
@@ -89,15 +89,15 @@ public class TriangleTest {
         a.normalize();
         Ray ray1 = new Ray(new Point(5, 15, 0), a);
 
-        System.out.print(triangle.getIntersection(ray1).toString());
-        assertNotNull(triangle.getIntersection(ray1));
+        System.out.print(triangle.getIntersection(ray1,0,10000).toString());
+        assertNotNull(triangle.getIntersection(ray1,0,10000));
     }
     @Test
     void notIntersectsWithRes() {
         Vector a = new Vector(-1, 0, 0);
         a.normalize();
         Ray ray1 = new Ray(new Point(5.0, 15.1, 0.0), a);
-        assertNull(triangle.getIntersection(ray1));
+        assertNull(triangle.getIntersection(ray1,0,10000));
     }
 
     @Test
@@ -105,6 +105,6 @@ public class TriangleTest {
         Vector a = new Vector(0, -1, -1);
         a.normalize();
         Ray ray1 = new Ray(new Point(5.0, 0.0, 0.0), a);
-        assertNull(triangle.getIntersection(ray1));
+        assertNull(triangle.getIntersection(ray1,0,10000));
     }
 }

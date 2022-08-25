@@ -13,9 +13,11 @@ public class Scene {
         this.screen = new Screen(resolutionX,resolutionY, screenCenter, pixelSize );
         this.camera = new Camera(this.screen,angle,light);
         this.objects = objects;
-//        this.camera.getStartRay(objects);
-        this.camera.getConstantLightRay(objects);
-        System.out.print(this.camera.toString());
+//        this.camera.getStartRay(objects); //First part of lab1
+        this.camera.getConstantLightRay(this.objects);
     }
 
+    public String getPicture(){
+        return this.camera.toString();
+    }
     }

@@ -9,6 +9,7 @@ public class Pixel {
     Screen screen;
     boolean intersection;
     char symbol;
+    double distance;
 
     public Pixel(Integer matrixPositionX, Integer matrixPositionY, Screen screen) {
         this.matrixPositionX = matrixPositionX;
@@ -18,6 +19,19 @@ public class Pixel {
                 screen.pixelSize/2, screen.highLeftCorner.getY(), screen.getHighLeftCorner().getZ() -
                 screen.pixelSize * matrixPositionY + screen.pixelSize / 2);
         this.symbol = '—';
+        this.distance = 100000;
+    }
+
+    public boolean isSmaller(double a){
+        return a < distance;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public void setSymbol(char symbol) {

@@ -10,8 +10,9 @@ public class Camera {
 private final Screen screen;
 private Double angle;
 private Point position;
-    private final Light light;
-
+private final Light light;
+private final int MAX_DEPTH = 100000;
+private final int MIN_DEPTH = 0;
     public Camera(Screen screen, Double angle, Light light) {
         this.angle = angle;
         this.position = new Point(screen.center.getX(),screen.center.getY() -
@@ -53,19 +54,23 @@ private Point position;
                 Double lightLevel = 0.0;
                 Ray r = new Ray(this.position,k);
                 for (GeometryObject object:objects){
-                    Point interPoint = object.getIntersection(r);
+                    Point interPoint = object.getIntersection(r,MIN_DEPTH,MAX_DEPTH);
                     if(interPoint != null) {
-                        lightLevel = object.getLightningLevel(interPoint,this.light);
-                        if (lightLevel < 0)
-                            pixel.setSymbol(' ');
-                        if (lightLevel >= 0 && lightLevel < 0.2)
-                            pixel.setSymbol('.');
-                        if (lightLevel >= 0.2 && lightLevel < 0.5)
-                            pixel.setSymbol('*');
-                        if (lightLevel >= 0.5 && lightLevel < 0.8)
-                            pixel.setSymbol('0');
-                        if (lightLevel >= 0.8)
-                            pixel.setSymbol('#');
+                        double distance = Point.getDistance(interPoint,this.position);
+                        if( pixel.isSmaller(distance)) {
+                            pixel.setDistance(distance);
+                            lightLevel = object.getLightningLevel(interPoint, this.light);
+                            if (lightLevel < 0)
+                                pixel.setSymbol(' ');
+                            if (lightLevel >= 0 && lightLevel < 0.2)
+                                pixel.setSymbol('.');
+                            if (lightLevel >= 0.2 && lightLevel < 0.5)
+                                pixel.setSymbol('*');
+                            if (lightLevel >= 0.5 && lightLevel < 0.8)
+                                pixel.setSymbol('0');
+                            if (lightLevel >= 0.8)
+                                pixel.setSymbol('#');
+                        }
                     }
                 }
             }
