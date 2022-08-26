@@ -50,8 +50,8 @@ public class SceneTest {
                 new Sphere(new Point(40.0,11.0,40.0),10.0)
         };
 
-        Scene thirdTask = new Scene(obj,20,20, new Point(20.0,0.0,20.0),
-                1.0, 60.0, new Light(3.0,3.0,-3.0 ));
+        Scene thirdTask = new Scene(obj,200,200, new Point(20.0,0.0,20.0),
+                0.1, 60.0, new Light(3.0,3.0,-3.0 ));
 
         System.out.print(thirdTask.getPicture());  // make tests
     }

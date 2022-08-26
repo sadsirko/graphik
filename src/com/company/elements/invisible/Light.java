@@ -7,4 +7,10 @@ public class Light extends Vector{
         this.normalize();
     }
 
+    @Override
+    public Light multiply(Double mul) {
+        Vector res = super.multiply(mul);
+        res.normalize();
+        return new Light(res.getX(), res.getY(), res.getZ());
+    }
 }

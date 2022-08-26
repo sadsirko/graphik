@@ -61,19 +61,17 @@ private final int MIN_DEPTH = 0;
                         if( pixel.isSmaller(distance)) {
                             pixel.setDistance(distance);
                             lightLevel = object.getLightningLevel(interPoint, this.light);
+                             if (lightLevel > 0)
+                                 for (GeometryObject objectL:objects) {
+                                     Light reverseLight = this.light.multiply(-1.0);
+                                    Point secondI = object.getIntersection(new Ray(interPoint,reverseLight)
+                                            ,MIN_DEPTH,MAX_DEPTH);
+                                    if(secondI != null)
+                                     lightLevel = 0.0;
+                                 }
                             int colour = (int) (lightLevel * 255);
                             pixel.setColour(new Colour(colour,colour,colour));
 
-                            if (lightLevel < 0)
-                                pixel.setSymbol(' ');
-                            if (lightLevel >= 0 && lightLevel < 0.2)
-                                pixel.setSymbol('.');
-                            if (lightLevel >= 0.2 && lightLevel < 0.5)
-                                pixel.setSymbol('*');
-                            if (lightLevel >= 0.5 && lightLevel < 0.8)
-                                pixel.setSymbol('0');
-                            if (lightLevel >= 0.8)
-                                pixel.setSymbol('#');
                         }
                     }
                 }
