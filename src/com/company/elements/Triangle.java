@@ -1,5 +1,6 @@
 package com.company.elements;
 
+import com.company.Matrix3D;
 import com.company.elements.invisible.*;
 
 public class Triangle implements GeometryObject{
@@ -10,8 +11,6 @@ public class Triangle implements GeometryObject{
     public Normal firstNormal;
     public Normal secondNormal;
     public Normal thirdNormal;
-
-
 
     public Normal normal;
 
@@ -24,6 +23,14 @@ public class Triangle implements GeometryObject{
         this.thirdNormal = t;
     }
 
+    public void transform(Matrix3D m){
+        this.firstAngle = m.multiplyPoint(firstAngle);
+        this.secondAngle = m.multiplyPoint(secondAngle);
+        this.thirdAngle = m.multiplyPoint(thirdAngle);
+        this.firstNormal = m.multiplyNormal(firstNormal);
+        this.secondNormal = m.multiplyNormal(secondNormal);
+        this.thirdNormal = m.multiplyNormal(thirdNormal);
+    }
 
     @Override
     public boolean intersectWith(Ray ray) {
@@ -128,5 +135,18 @@ public class Triangle implements GeometryObject{
         normalTriangleUp.normalize();
         double lightLev = light.scalarProduct(normalTriangleUp);
         return lightLev;
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "firstAngle=" + firstAngle +
+                ", secondAngle=" + secondAngle +
+                ", thirdAngle=" + thirdAngle +
+                ", firstNormal=" + firstNormal +
+                ", secondNormal=" + secondNormal +
+                ", thirdNormal=" + thirdNormal +
+                ", normal=" + normal +
+                '}';
     }
 }

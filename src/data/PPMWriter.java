@@ -10,11 +10,8 @@ import java.text.CharacterIterator;
 public class PPMWriter {
 
     public void write(Screen screen,String filename){
-
-
-
         try {
-            FileWriter myWriter = new FileWriter("filename.ppm");
+            FileWriter myWriter = new FileWriter(filename);
             myWriter.write("P3\n");
             myWriter.write(screen.getResolutionX().toString() + ' ' + screen.getResolutionY().toString() + '\n');
             myWriter.write("256\n");

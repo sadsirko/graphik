@@ -7,7 +7,7 @@ import com.company.elements.invisible.Vector;
 public class Matrix3D {
     public double[][] matrixArr = null;
 
-    public double[][] multiplyMatrices( double[][] secondMatrix) {
+    public void multiplyMatrices( double[][] secondMatrix) {
         double[][] result = new double[this.matrixArr.length][secondMatrix[0].length];
 
         for (int row = 0; row < result.length; row++) {
@@ -16,7 +16,7 @@ public class Matrix3D {
             }
         }
 
-        return result;
+        this.matrixArr = result;
     }
 
     public double multiplyMatricesCell(double[][] firstMatrix, double[][] secondMatrix, int row, int col) {
@@ -96,7 +96,7 @@ public class Matrix3D {
     }
 
 
-    public void rotateZ(double xAngle) {
+    public void rotateX(double xAngle) {
         double rad = Math.toRadians(xAngle);
         double[][] new_move = new double[][]{
                 new double[]{Math.cos(rad), -Math.sin(rad), 0, 0},
@@ -127,7 +127,7 @@ public class Matrix3D {
         }
     }
 
-    public void rotateX(double zAngle) {
+    public void rotateZ(double zAngle) {
         double rad = Math.toRadians(zAngle);
         double[][] new_move = new double[][]{
                 new double[]{1, 0, 0, 0},
